@@ -8,6 +8,10 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import { Toaster } from "sonner";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
