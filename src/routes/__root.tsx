@@ -8,6 +8,10 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import { Toaster } from "sonner";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -72,21 +76,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
+      { title: "RepoMind AI — Understand any GitHub repo with AI" },
       {
-        rel: "stylesheet",
-        href: appCss,
+        name: "description",
+        content:
+          "Paste a GitHub repository URL and get a beginner-friendly summary, tech stack, setup guide, architecture overview, and an AI assistant — in seconds.",
       },
+      { property: "og:title", content: "RepoMind AI — Understand any GitHub repo with AI" },
+      {
+        property: "og:description",
+        content: "AI-powered GitHub repository explainer for developers, students, and recruiters.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -113,7 +117,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+      <Toaster theme="dark" richColors position="top-right" />
     </QueryClientProvider>
   );
 }
