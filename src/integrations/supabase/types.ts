@@ -14,7 +14,104 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analyses: {
+        Row: {
+          architecture: string | null
+          beginner_explanation: string | null
+          created_at: string
+          description: string | null
+          difficulty_score: number | null
+          folder_explanations: Json | null
+          forks: number | null
+          id: string
+          language: string | null
+          languages: Json | null
+          owner: string
+          raw: Json | null
+          repo: string
+          repo_url: string
+          setup_guide: string | null
+          stars: number | null
+          summary: string | null
+          tech_stack: Json | null
+          user_id: string | null
+        }
+        Insert: {
+          architecture?: string | null
+          beginner_explanation?: string | null
+          created_at?: string
+          description?: string | null
+          difficulty_score?: number | null
+          folder_explanations?: Json | null
+          forks?: number | null
+          id?: string
+          language?: string | null
+          languages?: Json | null
+          owner: string
+          raw?: Json | null
+          repo: string
+          repo_url: string
+          setup_guide?: string | null
+          stars?: number | null
+          summary?: string | null
+          tech_stack?: Json | null
+          user_id?: string | null
+        }
+        Update: {
+          architecture?: string | null
+          beginner_explanation?: string | null
+          created_at?: string
+          description?: string | null
+          difficulty_score?: number | null
+          folder_explanations?: Json | null
+          forks?: number | null
+          id?: string
+          language?: string | null
+          languages?: Json | null
+          owner?: string
+          raw?: Json | null
+          repo?: string
+          repo_url?: string
+          setup_guide?: string | null
+          stars?: number | null
+          summary?: string | null
+          tech_stack?: Json | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          analysis_id: string
+          content: string
+          created_at: string
+          id: string
+          role: string
+        }
+        Insert: {
+          analysis_id: string
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+        }
+        Update: {
+          analysis_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_analysis_id_fkey"
+            columns: ["analysis_id"]
+            isOneToOne: false
+            referencedRelation: "analyses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
