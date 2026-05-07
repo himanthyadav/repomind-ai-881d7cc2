@@ -76,8 +76,8 @@ function AnalysisPage() {
   }
 
   const a = data.analysis;
-  const techStack: Array<{ name: string; category?: string }> = Array.isArray(a.tech_stack) ? a.tech_stack : [];
-  const folders: Array<{ path: string; explanation: string }> = Array.isArray(a.folder_explanations) ? a.folder_explanations : [];
+  const techStack: Array<{ name: string; category?: string }> = Array.isArray(a.tech_stack) ? (a.tech_stack as any) : [];
+  const folders: Array<{ path: string; explanation: string }> = Array.isArray(a.folder_explanations) ? (a.folder_explanations as any) : [];
   const languages: Record<string, number> = (a.languages as any) || {};
   const langTotal = Object.values(languages).reduce((s, n) => s + (n as number), 0) || 1;
 
